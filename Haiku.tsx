@@ -1,5 +1,5 @@
 import { Text } from 'react-native';
-import React, { ReactElement, } from 'react';
+import React, { ReactElement } from 'react';
 import Line from './Line';
 
 const Haiku = (): ReactElement => {

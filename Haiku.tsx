@@ -13,13 +13,16 @@ const Haiku = (): ReactElement => {
   return (
     <HaikuView>
       <Line
-        placeholder='First line goes here (5 syllables)'
+        placeholder='First line goes here'
+        syllableGoal={5}
       />
       <Line
-        placeholder='Second line goes here (7 syllables)'
+        placeholder='Second line goes here'
+        syllableGoal={7}
       />
       <Line
-        placeholder='Third line goes here (5 syllables)'
+        placeholder='Third line goes here'
+        syllableGoal={5}
         returnKeyType='done'
       />
     </HaikuView>

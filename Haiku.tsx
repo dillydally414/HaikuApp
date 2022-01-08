@@ -1,11 +1,17 @@
-import { Text } from 'react-native';
+import styled from 'styled-components';
+import { View } from 'react-native';
 import React, { ReactElement } from 'react';
 import Line from './Line';
 
+const HaikuView = styled(View)`
+  height: 100px;
+  justify-content: space-between;
+  width: 80%;
+`;
+
 const Haiku = (): ReactElement => {
   return (
-    <>
-      <Text>Haiku goes here</Text>
+    <HaikuView>
       <Line
         placeholder='First line goes here (5 syllables)'
       />
@@ -16,7 +22,7 @@ const Haiku = (): ReactElement => {
         placeholder='Third line goes here (5 syllables)'
         returnKeyType='done'
       />
-    </>
+    </HaikuView>
   )
 }
 

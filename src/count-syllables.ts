@@ -1,4 +1,4 @@
-const diphthongs: Array<string> = ['ai', 'ay', 'au', 'ea', 'ee', 'ey', 'ie', 'oi', 'oo', 'ou', 'oy'];
+const diphthongs: Array<string> = ['ai', 'ay', 'au', 'ea', 'ee', 'ey', 'ie', 'oi', 'oo', 'ou', 'oy', 'ya', 'ye', 'yi', 'yo', 'yu'];
 
 const vowels: Array<string> = ['a', 'e', 'i', 'o', 'u', 'y'];
 

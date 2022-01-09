@@ -4,7 +4,8 @@ import React, { ReactElement } from 'react';
 import Line from './Line';
 
 const HaikuView = styled(View)`
-  height: 100px;
+  display: flex;
+  height: 20%;
   justify-content: space-between;
   width: 80%;
 `;

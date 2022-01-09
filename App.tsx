@@ -9,11 +9,12 @@ const Container = styled(View)`
   display: flex;
   height: 100%;
   justify-content: flex-start;
+  width: 100%;
 `;
 
 const Title = styled(Text)`
-  font-size: 20px;
-  padding: 125px 0 75px;
+  font-size: 30px;
+  padding: 35% 0 25%;
 `;
 
 export default function App() {

@@ -5,10 +5,6 @@ import countSyllables from '../count-syllables';
 
 const secondaryColor = '#D3D3D3';
 
-interface FocusProps {
-  readonly focus: boolean;
-}
-
 const StyledLine = styled(TextInput)`
   border-bottom-width: 1px;
   height: 20px;

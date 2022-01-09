@@ -7,9 +7,9 @@ const secondaryColor = '#D3D3D3';
 
 const StyledLine = styled(TextInput)`
   border-bottom-width: 1px;
-  height: 20px;
-  margin-top: 10px;
-  padding-left: 2px;
+  height: 15%;
+  margin-top: 3%;
+  padding-left: 0.5%;
   width: 100%;
 `;
 

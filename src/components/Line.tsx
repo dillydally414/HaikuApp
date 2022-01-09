@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import React, { ReactElement, useState } from 'react';
 import { Text, TextInput } from 'react-native';
-import countSyllables from './count-syllables';
+import countSyllables from '../count-syllables';
 
 const secondaryColor = '#D3D3D3';
 

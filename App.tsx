@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import styled from 'styled-components/native';
 import { Text, View } from 'react-native';
-import Haiku from './Haiku';
+import Haiku from './src/components/Haiku';
 
 const Container = styled(View)`
   align-items: center;

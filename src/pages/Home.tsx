@@ -2,7 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import styled from 'styled-components/native';
 import { Pressable, Text, View } from 'react-native';
 import Haiku from '../components/Haiku';
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types';
 
 const Container = styled(View)`
   align-items: center;
@@ -18,7 +20,10 @@ const Title = styled(Text)`
   padding: 35% 0 25%;
 `;
 
-export default function Home() {
+const Home = ({
+  navigation,
+}: NativeStackScreenProps<RootStackParamList, 'Home'>
+): ReactElement => {
   const [blur, setBlur] = useState(false);
   return (
     <Pressable onPress={() => setBlur(true)}>
@@ -28,7 +33,12 @@ export default function Home() {
         </Title>
         <StatusBar style="auto" />
         <Haiku blurHandler={[blur, setBlur]} />
+        <Title onPress={() => navigation.navigate('Settings')}>
+          Settings
+        </Title>
       </Container>
     </Pressable>
   );
-}
+};
+
+export default Home;

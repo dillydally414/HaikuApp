@@ -1,7 +1,8 @@
 import styled from 'styled-components/native';
-import React, { ForwardedRef, useState } from 'react';
+import React, { ForwardedRef, useEffect, useState } from 'react';
 import { Text, TextInput } from 'react-native';
-import countSyllables from '../count-syllables';
+import countSyllables from '../functions/count-syllables';
+import removeBlacklisted from '../functions/remove-blacklisted';
 
 const secondaryColor = '#D3D3D3';
 
@@ -28,16 +29,15 @@ const Line = React.forwardRef(({
   const [focused, setFocused] = useState(false);
   const [syllables, setSyllables] = useState(0);
 
-  const handleTextChange = (text: string): void => {
-    setText(text);
+  useEffect(() => {
     setSyllables(countSyllables(text));
-  }
+  }, [text]);
 
   return (
     <>
       <StyledLine
         placeholder={`${placeholder} (${syllableGoal} syllables)`}
-        onChangeText={(text: string) => handleTextChange(text)}
+        onChangeText={(text: string) => removeBlacklisted(text, setText)}
         defaultValue={text}
         placeholderTextColor={secondaryColor}
         returnKeyType={returnKeyType}

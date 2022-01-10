@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import styled from 'styled-components/native';
-import { Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import Haiku from './src/components/Haiku';
+import { useState } from 'react';
 
 const Container = styled(View)`
   align-items: center;
@@ -18,13 +19,16 @@ const Title = styled(Text)`
 `;
 
 export default function App() {
+  const [blur, setBlur] = useState(false);
   return (
-    <Container>
-      <Title>
-        Haiku Buddy
-      </Title>
-      <StatusBar style="auto" />
-      <Haiku />
-    </Container>
+    <Pressable onPress={() => setBlur(true)}>
+      <Container>
+        <Title>
+          Haiku Buddy
+        </Title>
+        <StatusBar style="auto" />
+        <Haiku blurHandler={[blur, setBlur]} />
+      </Container>
+    </Pressable>
   );
 }

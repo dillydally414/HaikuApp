@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { TextInput, View } from 'react-native';
-import React, { ReactElement, useRef } from 'react';
+import React, { ReactElement, useEffect, useRef } from 'react';
 import Line from './Line';
 
 const HaikuView = styled(View)`
@@ -10,10 +10,25 @@ const HaikuView = styled(View)`
   width: 80%;
 `;
 
-const Haiku = (): ReactElement => {
+const Haiku = ({
+  blurHandler,
+}: {
+  blurHandler: [boolean, (arg: boolean) => void]
+}): ReactElement => {
+  const [blur, setBlur] = blurHandler;
   const ref1 = useRef<TextInput>(null);
   const ref2 = useRef<TextInput>(null);
   const ref3 = useRef<TextInput>(null);
+
+  useEffect(() => {
+    if (blur) {
+      ref1.current?.blur();
+      ref2.current?.blur();
+      ref3.current?.blur();
+      setBlur(false);
+    }
+  }, [blur]);
+
   return (
     <HaikuView>
       <Line

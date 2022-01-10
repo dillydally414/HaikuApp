@@ -1,34 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import styled from 'styled-components/native';
-import { Pressable, Text, View } from 'react-native';
-import Haiku from './src/components/Haiku';
-import { useState } from 'react';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import Home from "./src/pages/Home";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Container = styled(View)`
-  align-items: center;
-  background-color: #fff;
-  display: flex;
-  height: 100%;
-  justify-content: flex-start;
-  width: 100%;
-`;
-
-const Title = styled(Text)`
-  font-size: 30px;
-  padding: 35% 0 25%;
-`;
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [blur, setBlur] = useState(false);
   return (
-    <Pressable onPress={() => setBlur(true)}>
-      <Container>
-        <Title>
-          Haiku Buddy
-        </Title>
-        <StatusBar style="auto" />
-        <Haiku blurHandler={[blur, setBlur]} />
-      </Container>
-    </Pressable>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }

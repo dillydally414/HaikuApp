@@ -5,7 +5,7 @@ import { RootStackParamList } from "../types";
 import styled from "styled-components/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Password = styled(TextInput)`
+const PasswordInput = styled(TextInput)`
   align-self: center;
   border-bottom-width: 1px;
   border-bottom-color: gray;
@@ -13,17 +13,17 @@ const Password = styled(TextInput)`
   width: 40%;
 `;
 
-const SettingsLabel = styled(Text)`
+const SettingLabel = styled(Text)`
   align-self: center;
   margin-top: 10%;
 `;
 
-const PasswordRow = styled(View)`
+const SettingRow = styled(View)`
   flex-direction: row;
   justify-content: center;
 `;
 
-const NewPassword = styled(Password)`
+const SettingInput = styled(PasswordInput)`
   align-self: center;
   border-bottom-width: 1px;
   border-bottom-color: gray;
@@ -31,7 +31,7 @@ const NewPassword = styled(Password)`
   width: 40%;
 `;
 
-const SubmitNewPassword = styled(TouchableOpacity)`
+const SettingSubmit = styled(TouchableOpacity)`
   align-self: center;
   background-color: #0088FF;
   border-radius: 10px;
@@ -39,7 +39,7 @@ const SubmitNewPassword = styled(TouchableOpacity)`
   padding: 1.5% 3%;
 `;
 
-const SubmitText = styled(Text)`
+const SettingSubmitText = styled(Text)`
   align-self: center;
   color: white;
 `;
@@ -53,6 +53,7 @@ const Settings = ({
   const [password, setPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [secretPassword, setSecretPassword] = useState('');
+  const [badWord, setBadWord] = useState('');
 
   const handleSignInAttempt = () => {
     if (password === secretPassword) {
@@ -61,13 +62,29 @@ const Settings = ({
       setPassword('');
       Alert.alert('Incorrect password', 'Try again');
     }
-  }
+  };
 
   const changePassword = (password: string) => {
     AsyncStorage.setItem('password', password);
     Alert.alert('Password changed successfully', `New password: '${password}'`);
     setNewPassword('');
-  }
+  };
+
+  const addBadWord = (badWord: string) => {
+    if (badWord === '') return;
+    AsyncStorage.getItem('blacklist').then((value) => {
+      let blacklistedArray: Array<string> = value ? JSON.parse(value) : [];
+      if (blacklistedArray.includes(badWord)) {
+        Alert.alert('Word already blacklisted', `Word: '${badWord}'`);
+        setBadWord('');
+        return;
+      }
+      blacklistedArray.push(badWord);
+      AsyncStorage.setItem('blacklist', JSON.stringify(blacklistedArray));
+      Alert.alert('Blacklisted word successfully', `Word: '${badWord}'`);
+      setBadWord('');
+    });
+  };
 
   useEffect(() => {
     const getOldPass = async () => {
@@ -78,7 +95,7 @@ const Settings = ({
   }, []);
 
   return !signedIn ? (
-    <Password
+    <PasswordInput
       placeholder="Enter password here..."
       onChangeText={(text) => setPassword(text)}
       value={password}
@@ -87,24 +104,42 @@ const Settings = ({
     />
   ) : (
     <ScrollView>
-      <SettingsLabel>
+      <SettingLabel>
         Set password:
-      </SettingsLabel>
-      <PasswordRow>
-        <NewPassword
+      </SettingLabel>
+      <SettingRow>
+        <SettingInput
           placeholder="Enter new password here..."
           onChangeText={(text) => setNewPassword(text)}
           value={newPassword}
           returnKeyType="done"
         />
-        <SubmitNewPassword
+        <SettingSubmit
           onPress={() => changePassword(newPassword)}
         >
-          <SubmitText>
+          <SettingSubmitText>
             Submit
-          </SubmitText>
-        </SubmitNewPassword>
-      </PasswordRow>
+          </SettingSubmitText>
+        </SettingSubmit>
+      </SettingRow>
+      <SettingLabel>
+        Add blacklisted word:
+      </SettingLabel>
+      <SettingRow>
+        <SettingInput
+          placeholder="Enter bad word here..."
+          onChangeText={(text) => setBadWord(text)}
+          value={badWord}
+          returnKeyType="done"
+        />
+        <SettingSubmit
+          onPress={() => addBadWord(badWord)}
+        >
+          <SettingSubmitText>
+            Submit
+          </SettingSubmitText>
+        </SettingSubmit>
+      </SettingRow>
     </ScrollView>
   );
 };

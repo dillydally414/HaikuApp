@@ -5,7 +5,6 @@ import Haiku from '../components/Haiku';
 import { ReactElement, useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
-import Gear from '../../assets/gear.png';
 
 const Container = styled(View)`
   align-items: center;
@@ -41,7 +40,7 @@ const Home = ({
     <Pressable onPress={() => setBlur(true)}>
       <Container>
         <GearPressable onPress={() => navigation.navigate('Settings')}>
-          <GearImage source={Gear} />
+          <GearImage source={require(`../../assets/gear.png`)} />
         </GearPressable>
         <Title>
           Haiku Buddy

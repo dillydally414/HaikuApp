@@ -1,0 +1,70 @@
+import styled from 'styled-components/native';
+import React, { ForwardedRef, useState } from 'react';
+import { Text, TextInput } from 'react-native';
+import countSyllables from '../count-syllables';
+
+const secondaryColor = '#D3D3D3';
+
+const StyledLine = styled(TextInput)`
+  border-bottom-width: 1px;
+  height: 15%;
+  margin-top: 3%;
+  padding-left: 0.5%;
+  width: 100%;
+`;
+
+const Line = React.forwardRef(({
+  placeholder,
+  returnKeyType = 'next',
+  syllableGoal,
+  onSubmit = () => { },
+}: {
+  placeholder: string,
+  returnKeyType?: 'next' | 'done',
+  syllableGoal: number,
+  onSubmit?: Function,
+}, ref: ForwardedRef<TextInput>) => {
+  const [text, setText] = useState('');
+  const [focused, setFocused] = useState(false);
+  const [syllables, setSyllables] = useState(0);
+
+  const handleTextChange = (text: string): void => {
+    setText(text);
+    setSyllables(countSyllables(text));
+  }
+
+  return (
+    <>
+      <StyledLine
+        placeholder={`${placeholder} (${syllableGoal} syllables)`}
+        onChangeText={(text: string) => handleTextChange(text)}
+        defaultValue={text}
+        placeholderTextColor={secondaryColor}
+        returnKeyType={returnKeyType}
+        autoCapitalize='none'
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        style={{
+          borderBottomColor: focused ? 'blue' : secondaryColor,
+        }}
+        onSubmitEditing={() => onSubmit()}
+        ref={ref}
+      />
+      <Text
+        style={{
+          color: syllableGoal - syllables > 0 ? 'black' : syllableGoal === syllables ? 'green' : 'red'
+        }}
+      >
+        {syllableGoal - syllables > 0 ? (
+          `${syllableGoal - syllables} more syllable${syllableGoal - syllables > 1 ? 's' : ''}.`
+        ) : (syllableGoal === syllables ? (
+          'Right number of syllables!'
+        ) : (
+          `${syllables - syllableGoal} syllable${syllables - syllableGoal > 1 ? 's' : ''} over.`
+        ))}
+      </Text>
+    </>
+  );
+});
+
+export default Line;

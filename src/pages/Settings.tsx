@@ -5,7 +5,11 @@ import { RootStackParamList } from "../types";
 import styled from "styled-components/native";
 
 const Password = styled(TextInput)`
-
+  align-self: center;
+  border-bottom-width: 1px;
+  border-bottom-color: gray;
+  margin: 20% 0;
+  width: 40%;
 `;
 
 const Settings = ({

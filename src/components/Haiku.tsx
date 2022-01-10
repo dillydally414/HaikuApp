@@ -5,29 +5,15 @@ import Line from './Line';
 
 const HaikuView = styled(View)`
   display: flex;
-  height: 20%;
+  height: 30%;
   justify-content: space-between;
   width: 80%;
 `;
 
-const Haiku = ({
-  blurHandler,
-}: {
-  blurHandler: [boolean, (arg: boolean) => void]
-}): ReactElement => {
-  const [blur, setBlur] = blurHandler;
+const Haiku = (): ReactElement => {
   const ref1 = useRef<TextInput>(null);
   const ref2 = useRef<TextInput>(null);
   const ref3 = useRef<TextInput>(null);
-
-  useEffect(() => {
-    if (blur) {
-      ref1.current?.blur();
-      ref2.current?.blur();
-      ref3.current?.blur();
-      setBlur(false);
-    }
-  }, [blur]);
 
   return (
     <HaikuView>

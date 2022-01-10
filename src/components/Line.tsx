@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import React, { ReactElement, useState } from 'react';
+import React, { ForwardedRef, useState } from 'react';
 import { Text, TextInput } from 'react-native';
 import countSyllables from '../count-syllables';
 
@@ -13,15 +13,17 @@ const StyledLine = styled(TextInput)`
   width: 100%;
 `;
 
-const Line = ({
+const Line = React.forwardRef(({
   placeholder,
   returnKeyType = 'next',
   syllableGoal,
+  onSubmit = () => { },
 }: {
   placeholder: string,
   returnKeyType?: 'next' | 'done',
   syllableGoal: number,
-}): ReactElement => {
+  onSubmit?: Function,
+}, ref: ForwardedRef<TextInput>) => {
   const [text, setText] = useState('');
   const [focused, setFocused] = useState(false);
   const [syllables, setSyllables] = useState(0);
@@ -40,12 +42,13 @@ const Line = ({
         placeholderTextColor={secondaryColor}
         returnKeyType={returnKeyType}
         autoCapitalize='none'
-        blurOnSubmit={true} //returnKeyType === 'done'}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         style={{
           borderBottomColor: focused ? 'blue' : secondaryColor,
         }}
+        onSubmitEditing={() => onSubmit()}
+        ref={ref}
       />
       <Text
         style={{
@@ -62,6 +65,6 @@ const Line = ({
       </Text>
     </>
   );
-};
+});
 
 export default Line;

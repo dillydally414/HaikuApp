@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { TextInput, View } from 'react-native';
 import React, { ReactElement, useEffect, useRef } from 'react';
 import Line from './Line';

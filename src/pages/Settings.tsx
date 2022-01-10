@@ -54,6 +54,7 @@ const Settings = ({
   const [newPassword, setNewPassword] = useState('');
   const [secretPassword, setSecretPassword] = useState('');
   const [badWord, setBadWord] = useState('');
+  const [okayWord, setOkayWord] = useState('');
 
   const handleSignInAttempt = () => {
     if (password === secretPassword) {
@@ -64,25 +65,41 @@ const Settings = ({
     }
   };
 
-  const changePassword = (password: string) => {
-    AsyncStorage.setItem('password', password);
-    Alert.alert('Password changed successfully', `New password: '${password}'`);
+  const changePassword = () => {
+    AsyncStorage.setItem('password', newPassword);
+    Alert.alert('Password changed successfully', `New password: '${newPassword}'`);
     setNewPassword('');
   };
 
-  const addBadWord = (badWord: string) => {
+  const addBadWord = () => {
     if (badWord === '') return;
     AsyncStorage.getItem('blacklist').then((value) => {
       let blacklistedArray: Array<string> = value ? JSON.parse(value) : [];
-      if (blacklistedArray.includes(badWord)) {
+      if (blacklistedArray.includes(badWord.toLowerCase())) {
         Alert.alert('Word already blacklisted', `Word: '${badWord}'`);
         setBadWord('');
         return;
       }
-      blacklistedArray.push(badWord);
+      blacklistedArray.push(badWord.toLowerCase());
       AsyncStorage.setItem('blacklist', JSON.stringify(blacklistedArray));
       Alert.alert('Blacklisted word successfully', `Word: '${badWord}'`);
       setBadWord('');
+    });
+  };
+
+  const removeBadWord = () => {
+    if (okayWord === '') return;
+    AsyncStorage.getItem('blacklist').then((value) => {
+      let blacklistedArray: Array<string> = value ? JSON.parse(value) : [];
+      if (!blacklistedArray.includes(okayWord.toLowerCase())) {
+        Alert.alert('Word not blacklisted', `Word: '${okayWord}'`);
+        setOkayWord('');
+        return;
+      }
+      blacklistedArray = blacklistedArray.filter((value: string) => value !== okayWord.toLowerCase());
+      AsyncStorage.setItem('blacklist', JSON.stringify(blacklistedArray));
+      Alert.alert('Removed word from blacklist successfully', `Word: '${okayWord}'`);
+      setOkayWord('');
     });
   };
 
@@ -115,7 +132,7 @@ const Settings = ({
           returnKeyType="done"
         />
         <SettingSubmit
-          onPress={() => changePassword(newPassword)}
+          onPress={() => changePassword()}
         >
           <SettingSubmitText>
             Submit
@@ -133,7 +150,25 @@ const Settings = ({
           returnKeyType="done"
         />
         <SettingSubmit
-          onPress={() => addBadWord(badWord)}
+          onPress={() => addBadWord()}
+        >
+          <SettingSubmitText>
+            Submit
+          </SettingSubmitText>
+        </SettingSubmit>
+      </SettingRow>
+      <SettingLabel>
+        Remove blacklisted word:
+      </SettingLabel>
+      <SettingRow>
+        <SettingInput
+          placeholder="Enter okay word here..."
+          onChangeText={(text) => setOkayWord(text)}
+          value={okayWord}
+          returnKeyType="done"
+        />
+        <SettingSubmit
+          onPress={() => removeBadWord()}
         >
           <SettingSubmitText>
             Submit

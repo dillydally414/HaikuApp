@@ -8,7 +8,7 @@ const syllables = (word: string): number => {
   if (word.length === 0) return 0;
   word = word.toLowerCase();
   let syllables: number = 0;
-  if (word.endsWith('e') && !word.endsWith('le')) {
+  if (word.endsWith('e') && !word.endsWith('le') && !word.endsWith('ie')) {
     syllables--;
   }
   vowels.forEach((vowel: string) => {

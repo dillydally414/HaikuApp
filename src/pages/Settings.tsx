@@ -1,16 +1,42 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { ReactElement } from "react";
-import { Text } from "react-native";
+import React, { ReactElement, useState } from "react";
+import { Alert, Text, TextInput } from "react-native";
 import { RootStackParamList } from "../types";
+import styled from "styled-components/native";
+
+const Password = styled(TextInput)`
+
+`;
 
 const Settings = ({
   navigation,
 }: {
   navigation: NativeStackScreenProps<RootStackParamList, 'Settings'>,
 }): ReactElement => {
-  return (
+  const [signedIn, setSignedIn] = useState(false);
+  const [password, setPassword] = useState('');
+  const secretPassword = 'pass';
+
+  const handleSignInAttempt = () => {
+    if (password === secretPassword) {
+      setSignedIn(true);
+    } else {
+      setPassword('');
+      Alert.alert('Incorrect password', 'Try again');
+    }
+  }
+
+  return !signedIn ? (
+    <Password
+      placeholder="Enter password here..."
+      onChangeText={(text) => setPassword(text)}
+      value={password}
+      onSubmitEditing={() => handleSignInAttempt()}
+      returnKeyType="go"
+    />
+  ) : (
     <Text>
-      Empty Settings Page
+      You got access to the settings page! Congrats!
     </Text>
   );
 };

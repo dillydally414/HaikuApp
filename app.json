@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "HaikuApp",
+    "owner": "aunt_amy_apps",
     "slug": "HaikuApp",
     "version": "1.0.0",
     "orientation": "portrait",

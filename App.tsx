@@ -21,7 +21,7 @@ export default function App() {
           name="Finished"
           component={Finished}
           options={{
-            headerShown: false
+            headerTitle: ''
           }}
         />
       </Stack.Navigator>

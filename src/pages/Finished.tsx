@@ -13,10 +13,6 @@ const Finished = ({
         <Text>
           Finished!
         </Text>
-        <Button
-          title="Go back"
-          onPress={() => navigation.navigate('Home')}
-        />
       </View>
     </ScrollView>
   );

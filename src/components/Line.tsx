@@ -33,11 +33,15 @@ const Line = React.forwardRef(({
     setSyllables(syllable(text));
   }, [text]);
 
+  useEffect(() => {
+    setText(removeBlacklisted(text));
+  }, [focused])
+
   return (
     <>
       <StyledLine
         placeholder={`${placeholder} (${syllableGoal} syllables)`}
-        onChangeText={(text: string) => setText(removeBlacklisted(text))}
+        onChangeText={(text: string) => setText(text.endsWith(' ') ? removeBlacklisted(text) : text)}
         defaultValue={text}
         placeholderTextColor={secondaryColor}
         returnKeyType={returnKeyType}

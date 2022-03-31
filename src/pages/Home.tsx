@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import styled from 'styled-components/native';
-import { ScrollView, Text, View } from 'react-native';
+import { Button, ScrollView, Text, View } from 'react-native';
 import Haiku from '../components/Haiku';
 import React, { ReactElement } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -39,6 +39,10 @@ const Home = ({
         <StatusBar style="auto" />
         <Haiku />
       </Container>
+      <Button
+        title="Finished!"
+        onPress={() => navigation.navigate('Finished')}
+      />
     </ScrollContainer>
   );
 };

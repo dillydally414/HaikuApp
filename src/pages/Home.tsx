@@ -31,6 +31,7 @@ const Home = ({
 }: NativeStackScreenProps<RootStackParamList, 'Home'>
 ): ReactElement => {
   const [lines, setLines] = useState(['', '', '']);
+  const [complete, setComplete] = useState([false, false, false]);
 
   return (
     <ScrollContainer scrollEnabled={false}>
@@ -42,15 +43,18 @@ const Home = ({
         <Haiku
           lines={lines.map((line: string, index: number) => {
             return {
-              value: line,
-              setValue: (newValue: string) => setLines([...lines.slice(0, index), newValue, ...lines.slice(index + 1)])
+              text: line,
+              setText: (newText: string) => setLines([...lines.slice(0, index), newText, ...lines.slice(index + 1)]),
+              setComplete: (newComplete: boolean) => setComplete([...complete.slice(0, index), newComplete, ...complete.slice(index + 1)])
             }
           })}
         />
-        <Button
-          title="Finished!"
-          onPress={() => navigation.navigate('Finished', { haiku: lines })}
-        />
+        {complete.reduce((prev: boolean, current: boolean) => prev && current) &&
+          <Button
+            title="Finished!"
+            onPress={() => navigation.navigate('Finished', { haiku: lines })}
+          />
+        }
       </Container>
     </ScrollContainer>
   );

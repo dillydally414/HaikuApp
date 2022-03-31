@@ -14,9 +14,10 @@ const Haiku = ({
   lines,
 }: {
   lines: {
-    value: string,
-    setValue: (newValue: string) => void
-  }[]
+    text: string,
+    setText: (newText: string) => void
+    setComplete: (newComplete: boolean) => void
+  }[],
 }): ReactElement => {
   const ref1 = useRef<TextInput>(null);
   const ref2 = useRef<TextInput>(null);
@@ -29,16 +30,14 @@ const Haiku = ({
         syllableGoal={5}
         onSubmit={() => ref2.current?.focus()}
         ref={ref1}
-        text={lines[0].value}
-        setText={lines[0].setValue}
+        lineProps={lines[0]}
       />
       <Line
         placeholder='Second line goes here'
         syllableGoal={7}
         onSubmit={() => ref3.current?.focus()}
         ref={ref2}
-        text={lines[1].value}
-        setText={lines[1].setValue}
+        lineProps={lines[1]}
       />
       <Line
         placeholder='Third line goes here'
@@ -46,8 +45,7 @@ const Haiku = ({
         returnKeyType='done'
         onSubmit={() => ref3.current?.blur()}
         ref={ref3}
-        text={lines[2].value}
-        setText={lines[2].setValue}
+        lineProps={lines[2]}
       />
     </HaikuView>
   )

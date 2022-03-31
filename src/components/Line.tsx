@@ -19,13 +19,16 @@ const Line = React.forwardRef(({
   returnKeyType = 'next',
   syllableGoal,
   onSubmit = () => { },
+  text,
+  setText,
 }: {
   placeholder: string,
   returnKeyType?: 'next' | 'done',
   syllableGoal: number,
   onSubmit?: Function,
+  text: string,
+  setText: (newText: string) => void
 }, ref: ForwardedRef<TextInput>) => {
-  const [text, setText] = useState('');
   const [focused, setFocused] = useState(false);
   const [syllables, setSyllables] = useState(0);
 

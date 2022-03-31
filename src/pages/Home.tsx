@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import styled from 'styled-components/native';
 import { Button, ScrollView, Text, View } from 'react-native';
 import Haiku from '../components/Haiku';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
 
@@ -30,6 +30,8 @@ const Home = ({
   navigation,
 }: NativeStackScreenProps<RootStackParamList, 'Home'>
 ): ReactElement => {
+  const [lines, setLines] = useState(['', '', '']);
+
   return (
     <ScrollContainer scrollEnabled={false}>
       <Container>
@@ -37,12 +39,19 @@ const Home = ({
           Haiku Buddy
         </Title>
         <StatusBar style="auto" />
-        <Haiku />
+        <Haiku
+          lines={lines.map((line: string, index: number) => {
+            return {
+              value: line,
+              setValue: (newValue: string) => setLines([...lines.slice(0, index), newValue, ...lines.slice(index + 1)])
+            }
+          })}
+        />
+        <Button
+          title="Finished!"
+          onPress={() => navigation.navigate('Finished', { haiku: lines })}
+        />
       </Container>
-      <Button
-        title="Finished!"
-        onPress={() => navigation.navigate('Finished')}
-      />
     </ScrollContainer>
   );
 };

@@ -1,13 +1,14 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import Filter from 'bad-words';
+import badWords from '../constants/bad-words.json';
 
-const removeBlacklisted = (text: string, setText: (arg: string) => void): void => {
+const typedBadWords = [...badWords] as string[]
+const filter = new Filter({ placeHolder: '' });
+filter.addWords(...typedBadWords)
+
+const removeBlacklisted = (text: string): string => {
   let newText: Array<string> = text.split(' ');
-
-  AsyncStorage.getItem('blacklist').then((value) => {
-    const blacklistedArray: Array<string> = value ? JSON.parse(value) : [];
-    newText = newText.filter((word: string) => !blacklistedArray.includes(word.toLowerCase()));
-    setText(newText.join(' '));
-  });
+  newText = newText.filter((word: string) => (!filter.isProfane(word.toLowerCase())));
+  return newText.join(' ');
 };
 
 export default removeBlacklisted;

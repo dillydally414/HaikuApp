@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import React, { ForwardedRef, useEffect, useState } from 'react';
 import { Text, TextInput } from 'react-native';
-import countSyllables from '../functions/count-syllables';
+import { syllable } from 'syllable';
 import removeBlacklisted from '../functions/remove-blacklisted';
 
 const secondaryColor = '#D3D3D3';
@@ -30,7 +30,7 @@ const Line = React.forwardRef(({
   const [syllables, setSyllables] = useState(0);
 
   useEffect(() => {
-    setSyllables(countSyllables(text));
+    setSyllables(syllable(text));
   }, [text]);
 
   return (

@@ -1374,9 +1374,9 @@
     "@types/react-native" "^0.65"
     "@types/styled-components" "*"
 
-"@types/styled-components@*", "@types/styled-components@^5.1.19":
-  version "5.1.19"
-  resolved "https://registry.npmjs.org/@types/styled-components/-/styled-components-5.1.19.tgz"
+"@types/styled-components@*", "@types/styled-components@^5.1.24":
+  version "5.1.24"
+  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-5.1.24.tgz#b52ae677f03ea8a6018aa34c6c96b7018b7a3571"
   dependencies:
     "@types/hoist-non-react-statics" "*"
     "@types/react" "*"

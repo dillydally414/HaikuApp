@@ -37,7 +37,7 @@ const Line = React.forwardRef(({
     <>
       <StyledLine
         placeholder={`${placeholder} (${syllableGoal} syllables)`}
-        onChangeText={(text: string) => removeBlacklisted(text, setText)}
+        onChangeText={(text: string) => setText(removeBlacklisted(text))}
         defaultValue={text}
         placeholderTextColor={secondaryColor}
         returnKeyType={returnKeyType}

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import styled from 'styled-components/native';
-import { Image, Pressable, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import Haiku from '../components/Haiku';
 import React, { ReactElement } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -21,17 +21,6 @@ const Container = styled(View)`
   width: 100%;
 `;
 
-const GearImage = styled(Image)`
-  height: 30px;
-  margin: 6% 3% 0 0;
-  opacity: 0.4;
-  width: 30px;
-`;
-
-const GearPressable = styled(Pressable)`
-  align-self: flex-end;
-`;
-
 const Title = styled(Text)`
   font-size: 30px;
   padding: 25% 0 20%;
@@ -44,9 +33,6 @@ const Home = ({
   return (
     <ScrollContainer scrollEnabled={false}>
       <Container>
-        <GearPressable onPress={() => navigation.navigate('Settings')}>
-          <GearImage source={require(`../../assets/gear.png`)} />
-        </GearPressable>
         <Title>
           Haiku Buddy
         </Title>

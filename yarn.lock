@@ -1342,9 +1342,9 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-native@^0.66.11":
-  version "0.66.11"
-  resolved "https://registry.npmjs.org/@types/react-native/-/react-native-0.66.11.tgz"
+"@types/react-native@^0.67.3":
+  version "0.67.3"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.67.3.tgz#baba111c8ce1a45a6034c15f6f0ad98826239780"
   dependencies:
     "@types/react" "*"
 

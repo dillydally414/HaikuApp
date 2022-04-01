@@ -1,22 +1,22 @@
 {
   "files": {
-    "app.js": "/HaikuApp/static/js/app.07d64614.chunk.js",
-    "app.js.map": "/HaikuApp/static/js/app.07d64614.chunk.js.map",
+    "app.js": "/HaikuApp/static/js/app.18378535.chunk.js",
+    "app.js.map": "/HaikuApp/static/js/app.18378535.chunk.js.map",
     "runtime~app.js": "/HaikuApp/static/js/runtime~app.0c1e5d17.js",
     "runtime~app.js.map": "/HaikuApp/static/js/runtime~app.0c1e5d17.js.map",
-    "static/js/2.c668e8ef.chunk.js": "/HaikuApp/static/js/2.c668e8ef.chunk.js",
-    "static/js/2.c668e8ef.chunk.js.map": "/HaikuApp/static/js/2.c668e8ef.chunk.js.map",
+    "static/js/2.02ae08e2.chunk.js": "/HaikuApp/static/js/2.02ae08e2.chunk.js",
+    "static/js/2.02ae08e2.chunk.js.map": "/HaikuApp/static/js/2.02ae08e2.chunk.js.map",
     "favicon-16.png": "/HaikuApp/favicon-16.png",
     "favicon-32.png": "/HaikuApp/favicon-32.png",
     "favicon.ico": "/HaikuApp/favicon.ico",
     "index.html": "/HaikuApp/index.html",
     "manifest.json": "/HaikuApp/manifest.json",
     "serve.json": "/HaikuApp/serve.json",
-    "static/js/2.c668e8ef.chunk.js.LICENSE.txt": "/HaikuApp/static/js/2.c668e8ef.chunk.js.LICENSE.txt"
+    "static/js/2.02ae08e2.chunk.js.LICENSE.txt": "/HaikuApp/static/js/2.02ae08e2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime~app.0c1e5d17.js",
-    "static/js/2.c668e8ef.chunk.js",
-    "static/js/app.07d64614.chunk.js"
+    "static/js/2.02ae08e2.chunk.js",
+    "static/js/app.18378535.chunk.js"
   ]
 }

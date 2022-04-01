@@ -7,11 +7,16 @@ import removeBlacklisted from '../functions/remove-blacklisted';
 const secondaryColor = '#D3D3D3';
 
 const StyledLine = styled(TextInput)`
+  align-self: center;
   border-bottom-width: 1px;
-  height: 15%;
-  margin-top: 3%;
+  display: flex;
+  margin-top: 5%;
   padding-left: 0.5%;
   width: 100%;
+`;
+
+const StyledSubLine = styled(Text)`
+  display: flex;
 `;
 
 const Line = React.forwardRef(({
@@ -67,7 +72,7 @@ const Line = React.forwardRef(({
         onSubmitEditing={() => onSubmit()}
         ref={ref}
       />
-      <Text
+      <StyledSubLine
         style={{
           color: syllableGoal - syllables > 0 ? 'black' : syllableGoal === syllables ? 'green' : 'red'
         }}
@@ -79,7 +84,7 @@ const Line = React.forwardRef(({
         ) : (
           `${syllables - syllableGoal} syllable${syllables - syllableGoal > 1 ? 's' : ''} over.`
         ))}
-      </Text>
+      </StyledSubLine>
     </>
   );
 });

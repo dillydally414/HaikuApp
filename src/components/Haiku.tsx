@@ -4,8 +4,8 @@ import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import Line from './Line';
 
 const HaikuView = styled(View)`
+  align-self: center;
   display: flex;
-  height: 30%;
   justify-content: space-between;
   width: 80%;
 `;

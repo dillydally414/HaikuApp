@@ -17,13 +17,18 @@ const Container = styled(View)`
   align-items: center;
   display: flex;
   height: 100%;
-  justify-content: flex-start;
   width: 100%;
 `;
 
 const Title = styled(Text)`
   font-size: 30px;
   padding: 25% 0 20%;
+`;
+
+const FinishedButtonContainer = styled(View)`
+  display: flex;
+  height: 50%;
+  justify-content: center;
 `;
 
 const Home = ({
@@ -50,10 +55,12 @@ const Home = ({
           })}
         />
         {complete.reduce((prev: boolean, current: boolean) => prev && current) &&
-          <Button
-            title="Finished!"
-            onPress={() => navigation.navigate('Finished', { haiku: lines })}
-          />
+          <FinishedButtonContainer>
+            <Button
+              title="Finished!"
+              onPress={() => navigation.navigate('Finished', { haiku: lines })}
+            />
+          </FinishedButtonContainer>
         }
       </Container>
     </ScrollContainer>

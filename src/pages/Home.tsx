@@ -54,7 +54,7 @@ const Home = ({
             }
           })}
         />
-        {complete.reduce((prev: boolean, current: boolean) => prev && current) &&
+        {complete.reduce((prev: boolean, current: boolean) => prev && current, true) &&
           <FinishedButtonContainer>
             <Button
               title="Finished!"

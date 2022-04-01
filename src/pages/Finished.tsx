@@ -1,9 +1,34 @@
 import { RootStackParamList } from "../types";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ReactElement } from "react";
-import { Button, ScrollView, Text, View } from "react-native";
+import { Image, Modal, Pressable, ScrollView, Text, View } from "react-native";
 import * as Clipboard from 'expo-clipboard';
 import { useState, useEffect } from "react";
+import styled from "styled-components";
+
+const StyledView = styled(View)`
+  align-items: center;
+  display: flex;
+  padding: 20%
+`;
+
+const StyledHaikuLine = styled(Text)`
+  font-size: 20px;
+  margin: 1.5%;
+`;
+
+const ClipboardButton = styled(Pressable)`
+  margin-top: 50%;
+;`
+
+const ClipboardText = styled(Text)`
+  color: blue;
+  text-decoration: underline blue;
+`;
+
+const CopiedText = styled(Text)`
+  font-size: 10px;
+`;
 
 const Finished = ({
   navigation,
@@ -17,7 +42,7 @@ const Finished = ({
   useEffect(() => {
     if (copied) {
       if (currentTimeout) clearTimeout(currentTimeout)
-      const timeout = setTimeout(() => setCopied(false), 500)
+      const timeout = setTimeout(() => setCopied(false), 1000)
       setCurrentTimeout(timeout)
       return () => {
         clearTimeout(timeout)
@@ -28,29 +53,37 @@ const Finished = ({
 
   return (
     <ScrollView>
-      <View style={{ marginTop: 100 }}>
+      <StyledView>
         {haiku.map((line: string, index: number) => {
           return (
-            <Text key={line + index}>
+            <StyledHaikuLine key={line + index}>
               {line}
-            </Text>
+            </StyledHaikuLine>
           );
         })}
-        <Button
-          title='Copy to Clipboard'
+        <ClipboardButton
+          style={(props: { pressed: boolean }) => {
+            return [
+              {
+                opacity: props.pressed ? 0.5 : 1
+              }
+            ]
+          }}
           onPress={() => {
             Clipboard.setString(haiku.join('\n'))
             setCopied(true)
             setPress(press + 1)
           }}
-        />
+        >
+          <ClipboardText>Copy to Clipboard!</ClipboardText>
+        </ClipboardButton>
         {copied &&
-          <Text>
+          <CopiedText>
             Copied!
-          </Text>
+          </CopiedText>
         }
-      </View>
-    </ScrollView>
+      </StyledView >
+    </ScrollView >
   );
 };
 

@@ -7,11 +7,16 @@ import removeBlacklisted from '../functions/remove-blacklisted';
 const secondaryColor = '#D3D3D3';
 
 const StyledLine = styled(TextInput)`
+  align-self: center;
   border-bottom-width: 1px;
-  height: 15%;
-  margin-top: 3%;
+  display: flex;
+  margin-top: 5%;
   padding-left: 0.5%;
   width: 100%;
+`;
+
+const StyledSubLine = styled(Text)`
+  display: flex;
 `;
 
 const Line = React.forwardRef(({
@@ -19,15 +24,28 @@ const Line = React.forwardRef(({
   returnKeyType = 'next',
   syllableGoal,
   onSubmit = () => { },
+  lineProps: {
+    text,
+    setText,
+    setComplete
+  }
 }: {
   placeholder: string,
   returnKeyType?: 'next' | 'done',
   syllableGoal: number,
   onSubmit?: Function,
+  lineProps: {
+    text: string,
+    setText: (newText: string) => void,
+    setComplete: (newComplete: boolean) => void
+  }
 }, ref: ForwardedRef<TextInput>) => {
-  const [text, setText] = useState('');
   const [focused, setFocused] = useState(false);
   const [syllables, setSyllables] = useState(0);
+
+  useEffect(() => {
+    setComplete(syllables === syllableGoal)
+  }, [syllables])
 
   useEffect(() => {
     setSyllables(syllable(text));
@@ -54,7 +72,7 @@ const Line = React.forwardRef(({
         onSubmitEditing={() => onSubmit()}
         ref={ref}
       />
-      <Text
+      <StyledSubLine
         style={{
           color: syllableGoal - syllables > 0 ? 'black' : syllableGoal === syllables ? 'green' : 'red'
         }}
@@ -66,7 +84,7 @@ const Line = React.forwardRef(({
         ) : (
           `${syllables - syllableGoal} syllable${syllables - syllableGoal > 1 ? 's' : ''} over.`
         ))}
-      </Text>
+      </StyledSubLine>
     </>
   );
 });

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import Home from "./src/pages/Home";
+import { Home, Finished } from "./src/pages";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from "./src/types";
 
@@ -15,6 +15,13 @@ export default function App() {
           component={Home}
           options={{
             headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Finished"
+          component={Finished}
+          options={{
+            headerTitle: ''
           }}
         />
       </Stack.Navigator>

@@ -10,13 +10,21 @@ const Finished = ({
   route: { params: { haiku } }
 }: NativeStackScreenProps<RootStackParamList, 'Finished'>
 ): ReactElement => {
-  const [copied, setCopied] = useState(true);
+  const [copied, setCopied] = useState(false);
+  const [press, setPress] = useState(0);
+  const [currentTimeout, setCurrentTimeout] = useState<NodeJS.Timeout>();
 
   useEffect(() => {
     if (copied) {
-      setTimeout(() => setCopied(false), 3000)
+      if (currentTimeout) clearTimeout(currentTimeout)
+      const timeout = setTimeout(() => setCopied(false), 500)
+      setCurrentTimeout(timeout)
+      return () => {
+        clearTimeout(timeout)
+        setCurrentTimeout(undefined)
+      }
     }
-  }, [copied])
+  }, [press])
 
   return (
     <ScrollView>
@@ -33,6 +41,7 @@ const Finished = ({
           onPress={() => {
             Clipboard.setString(haiku.join('\n'))
             setCopied(true)
+            setPress(press + 1)
           }}
         />
         {copied &&

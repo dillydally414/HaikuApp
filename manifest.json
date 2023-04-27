@@ -5,5 +5,17 @@
   "name": "HaikuApp",
   "short_name": "HaikuApp",
   "start_url": "/?utm_source=web_app_manifest",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "related_applications": [
+    {
+      "platform": "itunes",
+      "id": "com.aunt-amy-apps.HaikuApp"
+    },
+    {
+      "platform": "play",
+      "url": "http://play.google.com/store/apps/details?id=com.aunt_amy_apps.HaikuApp",
+      "id": "com.aunt_amy_apps.HaikuApp"
+    }
+  ],
+  "prefer_related_applications": true
 }

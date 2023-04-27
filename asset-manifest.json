@@ -6,8 +6,8 @@
     "index.html": "/HaikuApp/index.html",
     "favicon-32.png": "/HaikuApp/favicon-32.png",
     "favicon-16.png": "/HaikuApp/favicon-16.png",
-    "serve.json": "/HaikuApp/serve.json",
     "manifest.json": "/HaikuApp/manifest.json",
+    "serve.json": "/HaikuApp/serve.json",
     "main.94ad61ba.js.map": "/HaikuApp/static/js/main.94ad61ba.js.map",
     "370.824eb2f3.js.map": "/HaikuApp/static/js/370.824eb2f3.js.map"
   },

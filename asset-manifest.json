@@ -1,7 +1,7 @@
 {
   "files": {
     "main.js": "/HaikuApp/static/js/main.94ad61ba.js",
-    "static/js/370.87a84dda.js": "/HaikuApp/static/js/370.87a84dda.js",
+    "static/js/370.824eb2f3.js": "/HaikuApp/static/js/370.824eb2f3.js",
     "favicon.ico": "/HaikuApp/favicon.ico",
     "index.html": "/HaikuApp/index.html",
     "favicon-32.png": "/HaikuApp/favicon-32.png",
@@ -9,10 +9,10 @@
     "serve.json": "/HaikuApp/serve.json",
     "manifest.json": "/HaikuApp/manifest.json",
     "main.94ad61ba.js.map": "/HaikuApp/static/js/main.94ad61ba.js.map",
-    "370.87a84dda.js.map": "/HaikuApp/static/js/370.87a84dda.js.map"
+    "370.824eb2f3.js.map": "/HaikuApp/static/js/370.824eb2f3.js.map"
   },
   "entrypoints": [
-    "static/js/370.87a84dda.js",
+    "static/js/370.824eb2f3.js",
     "static/js/main.94ad61ba.js"
   ]
 }

@@ -9,7 +9,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "deploy": "gh-pages -d web-build && eas update",
+    "deploy": "gh-pages -d web-build && eas update --channel default",
     "predeploy": "expo export:web"
   },
   "dependencies": {

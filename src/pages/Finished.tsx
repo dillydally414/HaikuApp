@@ -14,7 +14,6 @@ const StyledView = styled(View)`
 
 const StyledHaikuLine = styled(Text)`
   font-size: 20px;
-  margin: 0pt 1.5% 0pt;
 `;
 
 const ClipboardText = styled(Text)`

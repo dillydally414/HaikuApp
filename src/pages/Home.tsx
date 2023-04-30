@@ -64,6 +64,8 @@ const Home = ({
           };
         })}
       />
+      <View style={{ minHeight: "10%", height: "10%", maxHeight: "10%" }} />
+
       <FinishedButtonContainer>
         {complete.every((a) => a) && (
           <Button

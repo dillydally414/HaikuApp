@@ -21,7 +21,7 @@ const Title = styled.Text`
 const FinishedButtonContainer = styled.View`
   display: flex;
   height: 15%;
-  width: 15%;
+  min-width: 15%;
   justify-content: flex-end;
 `;
 

@@ -69,7 +69,10 @@ const Line = React.forwardRef(
           returnKeyType={returnKeyType}
           autoCapitalize="none"
           onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
+          onBlur={() => {
+            setText(removeBlacklisted(text));
+            setFocused(false);
+          }}
           style={{
             borderBottomColor: focused ? "blue" : secondaryColor,
           }}

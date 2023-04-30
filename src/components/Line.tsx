@@ -64,7 +64,7 @@ const Line = React.forwardRef(
           onChangeText={(text: string) =>
             setText(text.endsWith(" ") ? removeBlacklisted(text) : text)
           }
-          defaultValue={text}
+          value={text}
           placeholderTextColor={secondaryColor}
           returnKeyType={returnKeyType}
           autoCapitalize="none"

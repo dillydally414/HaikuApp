@@ -1,6 +1,6 @@
 import { RootStackParamList } from "../types";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 import { Image, Modal, Pressable, ScrollView, Text, View } from "react-native";
 import * as Clipboard from "expo-clipboard";
 import { useState, useEffect } from "react";
@@ -14,7 +14,6 @@ const StyledView = styled(View)`
 
 const StyledHaikuLine = styled(Text)`
   font-size: 20px;
-  margin: 0pt 1.5% 0pt;
 `;
 
 const ClipboardText = styled(Text)`
@@ -62,17 +61,15 @@ const Finished = ({
       <View style={{ minHeight: "10%", height: "10%", maxHeight: "10%" }} />
       {haiku.map((line: string, index: number) => {
         return (
-          <>
+          <React.Fragment key={line + index}>
             <View
-              key={`${line} ${index} spacer1`}
               style={{ minHeight: "1.5%", height: "1.5%", maxHeight: "1.5%" }}
             />
-            <StyledHaikuLine key={line + index}>{line}</StyledHaikuLine>
+            <StyledHaikuLine>{line}</StyledHaikuLine>
             <View
-              key={`${line} ${index} spacer2`}
               style={{ minHeight: "1.5%", height: "1.5%", maxHeight: "1.5%" }}
             />
-          </>
+          </React.Fragment>
         );
       })}
       <View style={{ minHeight: "20%", height: "20%", maxHeight: "20%" }} />

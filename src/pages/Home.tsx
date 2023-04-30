@@ -20,8 +20,9 @@ const Title = styled.Text`
 
 const FinishedButtonContainer = styled.View`
   display: flex;
-  height: 25%;
-  justify-content: center;
+  height: 15%;
+  min-width: 15%;
+  justify-content: flex-end;
 `;
 
 const Home = ({
@@ -63,17 +64,22 @@ const Home = ({
           };
         })}
       />
-      {complete.reduce(
-        (prev: boolean, current: boolean) => prev && current,
-        true
-      ) && (
-        <FinishedButtonContainer>
+      <View style={{ minHeight: "10%", height: "10%", maxHeight: "10%" }} />
+
+      <FinishedButtonContainer>
+        {complete.every((a) => a) && (
           <Button
             title="Finished!"
             onPress={() => navigation.navigate("Finished", { haiku: lines })}
           />
-        </FinishedButtonContainer>
-      )}
+        )}
+        <View style={{ minHeight: "15%", height: "15%", maxHeight: "15%" }} />
+        <Button
+          title="Clear"
+          color="red"
+          onPress={() => setLines(["", "", ""])}
+        />
+      </FinishedButtonContainer>
     </ScrollContainer>
   );
 };
